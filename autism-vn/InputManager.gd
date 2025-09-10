@@ -8,9 +8,9 @@ var input_schemes :={
 
 var vn := {
 	'advance': [KEY_SPACE, KEY_ENTER, MOUSE_BUTTON_LEFT],
-	'interact': [KEY_O],
-	'toggle_auto_continue': [KEY_P],
-	'ui_up': [KEY_I],
+	'interact': [],
+	'toggle_auto_continue': [KEY_A],
+	'ui_up': [],
 	'ui_left': [KEY_J],
 	'ui_down': [KEY_K],
 	'ui_right': [KEY_L],
@@ -18,12 +18,12 @@ var vn := {
 
 var rpg := {
 	'interact': [KEY_SPACE, KEY_ENTER, MOUSE_BUTTON_LEFT],
-	'advance': [KEY_I],
+	'advance': [],
 	'ui_up': [KEY_W, KEY_UP],
 	'ui_left': [KEY_A, KEY_LEFT],
 	'ui_down': [KEY_S, KEY_DOWN],
 	'ui_right': [KEY_D, KEY_RIGHT],
-	'toggle_auto_continue': [KEY_L]
+	'toggle_auto_continue': []
 }
 
 func change_controls(id: int):

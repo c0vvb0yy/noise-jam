@@ -9,10 +9,10 @@ var shader_time : float = 0.0
 @export
 var shader :ColorRect
 
-#func _input(event):
-	#if(event.is_action("ui_accept")):
-	#	count_time = false
-	#	SceneTransition.change_scene(target_scene)
+func _input(event):
+	if(event.is_action("ui_accept")):
+		count_time = false
+		SceneTransition.change_scene(target_scene)
 
 func _process(delta):
 	if count_time:

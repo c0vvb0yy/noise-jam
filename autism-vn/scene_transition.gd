@@ -19,9 +19,9 @@ func start_change_scene():
 	anim.play('melt')
 	await anim.animation_finished
 
-func finish_change_scene():
+func finish_change_scene(animation: String):
 	$Glitch.visible = true
 	$Melt.visible = false
 	#get_tree().change_scene_to_file(target)
-	anim.play("pixelate")
+	anim.play(animation)
 	#return await anim.animation_finished

@@ -48,7 +48,7 @@ float fractal(vec2 uv){
 	vec2 z = vec2(0.0);
 	vec2 c = uv * zoom + center;
 	float iterations = 0.0;
-	
+
 	for(int i = 0; i < max_iterations; i++){
 		z = vec2(z.x * z.x - z.y * z.y, debug * z.x * z.y) + c;
 		if(length(z) > 2.0){
@@ -70,7 +70,7 @@ void fragment() {
 		float angle = shader_time * speed;
 		uv = rotate(angle) * fold(uv);
 	}
-	
+
 	vec2 _center = vec2(center_X, center_Y);
 	//float iteration_col = secant_sea(uv, zoom, _center, debug, max_iterations, resolution);
 	float iteration_col = ship(uv, zoom, _center, max_iterations, debug, _Threshold);

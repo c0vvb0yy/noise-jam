@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bppd08ap5ic8c"]
+
+[ext_resource type="Shader" uid="uid://cr1kupcarc35e" path="res://shaders/fractal.gdshader" id="1_sbvqj"]
+
+[resource]
+shader = ExtResource("1_sbvqj")
+shader_parameter/_randSeed = 0.0
+shader_parameter/resolution = Vector2(1920, 1080)
+shader_parameter/zoom = 0.13
+shader_parameter/center = Vector2(0.495, 0.092)
+shader_parameter/max_iterations = 2000
+shader_parameter/_Threshold = 2.0
+shader_parameter/power = 2.0
+shader_parameter/debug = 1.85

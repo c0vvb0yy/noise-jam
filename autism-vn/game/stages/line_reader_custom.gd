@@ -183,7 +183,7 @@ func toggle_ui_visible(visible: bool):
 		ui_is_visible = false
 	#$Camera2D/VNUICanvasLayer/VNUIRoot/VNUI/DefaultTextContainer.visible = !$Camera2D/VNUICanvasLayer/VNUIRoot/VNUI/DefaultTextContainer.visible
 
-func transition_to_NET(scene_key: int):
+func transition_to_NET(scene_key: int, transition_animation: String):
 	#set_background("default")
 	PlayerManager.exit_dialog()
 	SceneTransition.start_change_scene()
@@ -191,18 +191,18 @@ func transition_to_NET(scene_key: int):
 	for object in $Objects.get_child(scene_key).get_children():
 		object.activate()
 	$Player.visible = true
-	SceneTransition.finish_change_scene()
+	SceneTransition.finish_change_scene(transition_animation)
 	toggle_ui_visible(false)
 	InputManager.change_controls(1)
 	#Parser.read_page(2,0)
 	pass
 
-func transition_to_Autism(prev_net_scene_key: int, page_index: int, line_index: int = 0):
+func transition_to_Autism(prev_net_scene_key: int, transition_animation: String, page_index: int, line_index: int = 0):
 	SceneTransition.start_change_scene()
 	set_background("kaleidoscope")
 	for object in $Objects.get_child(prev_net_scene_key).get_children():
 		object.deactivate()
 	$Player.visible = false
-	SceneTransition.finish_change_scene()
+	SceneTransition.finish_change_scene(transition_animation)
 	Parser.read_page(page_index, line_index)
 	

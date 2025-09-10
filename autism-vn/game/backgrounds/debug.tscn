@@ -1,23 +1,15 @@
-[gd_scene load_steps=16 format=3 uid="uid://c8pkwulr5ltqo"]
+[gd_scene load_steps=20 format=3 uid="uid://c8pkwulr5ltqo"]
 
 [ext_resource type="Script" uid="uid://buikowlvi8m5q" path="res://debug.gd" id="1_23npu"]
 [ext_resource type="Material" uid="uid://3gf0slafvwld" path="res://kaleidoscope_fractal.tres" id="2_a6dsa"]
 [ext_resource type="Script" uid="uid://dhp07c3pce41" path="res://mandelbrot.gd" id="3_w2p3h"]
-[ext_resource type="Shader" uid="uid://cr1kupcarc35e" path="res://shaders/fractal.gdshader" id="4_7bgeh"]
+[ext_resource type="Material" uid="uid://bppd08ap5ic8c" path="res://shaders/burning_ship.tres" id="4_w2p3h"]
 [ext_resource type="Animation" uid="uid://bwsuc8xhl68vn" path="res://animation/pixelate.res" id="5_jt7e4"]
 [ext_resource type="Shader" uid="uid://b162hctjnv56q" path="res://glitch_transition.gdshader" id="6_i8n8w"]
+[ext_resource type="Shader" uid="uid://buecgxnmjmh4y" path="res://shaders/warp.gdshader" id="7_7bgeh"]
 [ext_resource type="Shader" uid="uid://choif84b5rqgs" path="res://shaders/bit_punk_pp.gdshader" id="7_bf7rr"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_idmpq"]
-shader = ExtResource("4_7bgeh")
-shader_parameter/_randSeed = 0.0
-shader_parameter/resolution = Vector2(1920, 1080)
-shader_parameter/zoom = 0.13
-shader_parameter/center = Vector2(0.495, 0.092)
-shader_parameter/max_iterations = 2000
-shader_parameter/_Threshold = 2.0
-shader_parameter/power = 2.0
-shader_parameter/debug = 1.85
+[ext_resource type="Texture2D" uid="uid://bycn0cnx2b68k" path="res://debug_tesxtures/chaos_noise_vertical_border.png" id="8_jt7e4"]
+[ext_resource type="Shader" uid="uid://dy11ygl5mfmr8" path="res://shaders/jpeg.gdshader" id="10_7bgeh"]
 
 [sub_resource type="Animation" id="Animation_pk40j"]
 length = 0.001
@@ -62,6 +54,14 @@ shader_parameter/alpha = 1.0
 shader_parameter/rand_strength = 1.615
 shader_parameter/affected = Vector4(0, 0, 1, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i8n8w"]
+shader = ExtResource("7_7bgeh")
+shader_parameter/speed = 3.0
+shader_parameter/strength = 0.29
+shader_parameter/noise_strength = 1.0
+shader_parameter/desaturation_power = 1.46
+shader_parameter/noise = ExtResource("8_jt7e4")
+
 [sub_resource type="Gradient" id="Gradient_twvc8"]
 colors = PackedColorArray(0.89991, 0.704944, 0.709582, 1, 0.838468, 0.328668, 0.834807, 1)
 
@@ -84,15 +84,23 @@ noise = SubResource("FastNoiseLite_8li1q")
 shader = ExtResource("7_bf7rr")
 shader_parameter/_debug_fun = 1.86
 shader_parameter/_power = 1.72
-shader_parameter/_dither_offset_x = 66.17
+shader_parameter/_dither_offset_x = 115.79
 shader_parameter/_dither_offset_y = 57.89
 shader_parameter/_min_value = 0.72
 shader_parameter/_max_value = 0.99
 shader_parameter/_sec_min_value = 0.06
 shader_parameter/_sec_max_value = 0.1
 shader_parameter/dither_threshold = 0.7
-shader_parameter/dither_color = Color(1, 0.474755, 0.593648, 1)
+shader_parameter/dither_color = Color(0.816915, 0.618418, 0.532524, 1)
 shader_parameter/dither_texture = SubResource("NoiseTexture2D_duyeo")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jt7e4"]
+shader = ExtResource("10_7bgeh")
+shader_parameter/washout_intensity = 0.406
+shader_parameter/blur_amount = 5.0
+shader_parameter/blockiness = 150.0
+shader_parameter/color_steps = 12.282
+shader_parameter/grain_amount = 0.046
 
 [node name="Control" type="Node2D" node_paths=PackedStringArray("shader")]
 script = ExtResource("1_23npu")
@@ -106,7 +114,7 @@ offset_bottom = 647.0
 script = ExtResource("3_w2p3h")
 
 [node name="fractal" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_idmpq")
+material = ExtResource("4_w2p3h")
 offset_left = 1150.0
 offset_top = 2.0
 offset_right = 2300.0
@@ -130,11 +138,39 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_i8n8w")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 675.0
+offset_right = 6.0
+offset_bottom = 675.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 visible = false
 material = SubResource("ShaderMaterial_nnwbn")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 464.0
+offset_top = 678.0
+offset_right = 464.0
+offset_bottom = 678.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect3" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jt7e4")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1179.0
+offset_top = 662.0
+offset_right = 1179.0
+offset_bottom = 662.0
 grow_horizontal = 2
 grow_vertical = 2
