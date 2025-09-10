@@ -1,0 +1,137 @@
+[gd_scene load_steps=11 format=3 uid="uid://ura56l2y45n8"]
+
+[ext_resource type="Script" uid="uid://doido0wihu8si" path="res://scene_transition.gd" id="1_jiq3i"]
+[ext_resource type="Shader" uid="uid://be44nkc64isq2" path="res://shaders/pixel_melt.gdshader" id="2_gbkcp"]
+[ext_resource type="Shader" uid="uid://b162hctjnv56q" path="res://glitch_transition.gdshader" id="3_7lvy5"]
+[ext_resource type="Animation" uid="uid://bwsuc8xhl68vn" path="res://animation/pixelate.res" id="4_cv4e2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7lvy5"]
+shader = ExtResource("2_gbkcp")
+shader_parameter/progress = 0.0
+shader_parameter/meltiness = 16.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cv4e2"]
+shader = ExtResource("3_7lvy5")
+shader_parameter/pixel = 1.0
+shader_parameter/red_offset = Vector2(0, 0)
+shader_parameter/green_offset = Vector2(0, 0)
+shader_parameter/blue_offset = Vector2(0, 0)
+shader_parameter/alpha = 1.0
+shader_parameter/rand_strength = 1.0
+shader_parameter/affected = Vector4(0, 0, 1, 1)
+
+[sub_resource type="Animation" id="Animation_gbkcp"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Glitch:material:shader_parameter/rand_strength")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Glitch:material:shader_parameter/pixel")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_rj3yn"]
+resource_name = "glitch"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Glitch:material:shader_parameter/rand_strength")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 1.16]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Glitch:material:shader_parameter/pixel")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.566667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [9.395, 7.425, 5.1441, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_7lvy5"]
+resource_name = "melt"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.32241, 1.00401, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.033, 0.096, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cv4e2"]
+_data = {
+&"RESET": SubResource("Animation_gbkcp"),
+&"glitch": SubResource("Animation_rj3yn"),
+&"melt": SubResource("Animation_7lvy5"),
+&"pixelate": ExtResource("4_cv4e2")
+}
+
+[node name="SceneTransition" type="CanvasLayer"]
+script = ExtResource("1_jiq3i")
+
+[node name="Melt" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_7lvy5")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Glitch" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_cv4e2")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Melt")
+libraries = {
+&"": SubResource("AnimationLibrary_cv4e2")
+}
