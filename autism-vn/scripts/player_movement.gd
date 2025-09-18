@@ -11,6 +11,16 @@ var sprite = $AnimatedSprite2D
 
 var in_dialoge := false
 
+var origin_pos: Vector2
+
+func _ready():
+	origin_pos = self.position
+
+func set_up(activate):
+	if activate:
+		position = origin_pos
+	visible = activate
+
 func _physics_process(_delta):
 	if !PlayerManager.in_dialog and (!sprite_pos_tween or !sprite_pos_tween.is_running()):
 		if Input.is_action_just_pressed("ui_up") and !$up.is_colliding():

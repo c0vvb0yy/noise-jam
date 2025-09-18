@@ -46,7 +46,7 @@ func on_anim_finished(_anim_name = null):
 		if changing_to_net: 
 			object.activate()
 		else: object.deactivate()
-	$/root/StageRoot/StageContainer/GameStage/LineReader/Player.visible = true if changing_to_net else false
+	$/root/StageRoot/StageContainer/GameStage/LineReader/Player.set_up(changing_to_net)
 	
 	finish_change_scene()
 
