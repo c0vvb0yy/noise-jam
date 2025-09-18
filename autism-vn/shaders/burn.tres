@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://detmyq0p76hxy"]
+
+[ext_resource type="Shader" uid="uid://dffcsb6qfudih" path="res://shaders/burn.gdshader" id="1_74nt6"]
+[ext_resource type="Texture2D" uid="uid://b68yq1tbdlt6o" path="res://debug_tesxtures/chaos_noise.png" id="2_w22hg"]
+
+[resource]
+shader = ExtResource("1_74nt6")
+shader_parameter/position = Vector2(0, 0)
+shader_parameter/radius = 0.05
+shader_parameter/borderWidth = 0.18
+shader_parameter/burnMult = 0.59
+shader_parameter/noiseTexture = ExtResource("2_w22hg")
+shader_parameter/burnColor = Color(0.769816, 0.121537, 0.287455, 1)

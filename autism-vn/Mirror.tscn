@@ -1,21 +1,52 @@
-[gd_scene load_steps=12 format=3 uid="uid://d4ks7d0ylxwf1"]
+[gd_scene load_steps=19 format=3 uid="uid://d4ks7d0ylxwf1"]
 
 [ext_resource type="Script" uid="uid://ihmllfn3n1ge" path="res://Mirror.gd" id="1_efle6"]
-[ext_resource type="Texture2D" uid="uid://bni1454whrca2" path="res://mirror_textures/base_body.png" id="2_xmy8j"]
+[ext_resource type="Texture2D" uid="uid://b2f8cshggtr4g" path="res://mirror_textures/base_body_featureless.png" id="2_5dkhy"]
 [ext_resource type="Texture2D" uid="uid://c740nk6ffvb1t" path="res://mirror_textures/arm_selected.png" id="3_0dft4"]
+[ext_resource type="Material" uid="uid://detmyq0p76hxy" path="res://shaders/burn.tres" id="3_0oknv"]
+[ext_resource type="Shader" uid="uid://dffcsb6qfudih" path="res://shaders/burn.gdshader" id="3_kff0k"]
 [ext_resource type="Texture2D" uid="uid://ctk2e61h181o7" path="res://mirror_textures/eye.png" id="4_kff0k"]
 [ext_resource type="Texture2D" uid="uid://duwe1vsp4uj84" path="res://mirror_textures/mouth.png" id="5_0oknv"]
+[ext_resource type="Script" uid="uid://dso088leb1rxy" path="res://scripts/burn.gd" id="6_0oknv"]
 [ext_resource type="Texture2D" uid="uid://d3qeap2gcefmm" path="res://mirror_textures/hole.png" id="6_5dkhy"]
 [ext_resource type="Texture2D" uid="uid://b68yq1tbdlt6o" path="res://debug_tesxtures/chaos_noise.png" id="7_xmy8j"]
+[ext_resource type="Texture2D" uid="uid://ew4rlxgn00i7" path="res://mirror_textures/mirror.png" id="10_0oknv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wl2mb"]
 size = Vector2(14, 18.5)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5dkhy"]
+shader = ExtResource("3_kff0k")
+shader_parameter/position = Vector2(0, 0)
+shader_parameter/radius = 0.05
+shader_parameter/borderWidth = 0.18
+shader_parameter/burnMult = 0.59
+shader_parameter/noiseTexture = ExtResource("7_xmy8j")
+shader_parameter/burnColor = Color(0.769816, 0.121537, 0.287455, 1)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0uytd"]
 size = Vector2(6.5, 4.9)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wl2mb"]
+shader = ExtResource("3_kff0k")
+shader_parameter/position = Vector2(0, 0)
+shader_parameter/radius = 0.0
+shader_parameter/borderWidth = 0.02
+shader_parameter/burnMult = 0.135
+shader_parameter/noiseTexture = ExtResource("7_xmy8j")
+shader_parameter/burnColor = Color(0.769816, 0.121537, 0.287455, 1)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ylwjw"]
 size = Vector2(17.1, 4.8)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0uytd"]
+shader = ExtResource("3_kff0k")
+shader_parameter/position = Vector2(0, 0)
+shader_parameter/radius = 0.05
+shader_parameter/borderWidth = 0.18
+shader_parameter/burnMult = 0.59
+shader_parameter/noiseTexture = ExtResource("7_xmy8j")
+shader_parameter/burnColor = Color(0.769816, 0.121537, 0.287455, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n1rit"]
 size = Vector2(8.3, 7.2)
@@ -37,14 +68,16 @@ color = Color(0, 0, 0, 1)
 [node name="Body" type="Sprite2D" parent="."]
 visibility_layer = 7
 texture_filter = 1
-position = Vector2(558, 346)
+position = Vector2(613, 346)
 scale = Vector2(10, 10)
-texture = ExtResource("2_xmy8j")
+texture = ExtResource("2_5dkhy")
 
 [node name="Arm" type="Sprite2D" parent="."]
+material = ExtResource("3_0oknv")
 position = Vector2(423, 326)
 scale = Vector2(10, 10)
 texture = ExtResource("3_0dft4")
+script = ExtResource("6_0oknv")
 
 [node name="Area2D" type="Area2D" parent="Arm"]
 
@@ -53,9 +86,11 @@ position = Vector2(-1.3, 0.249998)
 shape = SubResource("RectangleShape2D_wl2mb")
 
 [node name="eye" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_5dkhy")
 position = Vector2(591, 151)
 scale = Vector2(10, 10)
 texture = ExtResource("4_kff0k")
+script = ExtResource("6_0oknv")
 
 [node name="Area2D" type="Area2D" parent="eye"]
 
@@ -70,9 +105,11 @@ texture = ExtResource("4_kff0k")
 flip_h = true
 
 [node name="mouth" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_wl2mb")
 position = Vector2(558, 196)
 scale = Vector2(10, 10)
 texture = ExtResource("5_0oknv")
+script = ExtResource("6_0oknv")
 
 [node name="Area2D" type="Area2D" parent="mouth"]
 
@@ -81,9 +118,11 @@ position = Vector2(0.150002, 0.399996)
 shape = SubResource("RectangleShape2D_ylwjw")
 
 [node name="hole" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_0uytd")
 position = Vector2(560, 318)
 scale = Vector2(10, 10)
 texture = ExtResource("6_5dkhy")
+script = ExtResource("6_0oknv")
 
 [node name="Area2D" type="Area2D" parent="hole"]
 
@@ -133,6 +172,7 @@ text = "Select the Sacrifice"
 horizontal_alignment = 1
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+visible = false
 position = Vector2(423, 326)
 scale = Vector2(10, 10)
 amount = 100
@@ -151,6 +191,13 @@ linear_accel_max = 74.32
 scale_amount_min = 0.0
 scale_amount_max = 0.03
 color = Color(1, 0, 0, 0.717647)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 177.0
+offset_top = -203.0
+offset_right = 934.0
+offset_bottom = 734.0
+texture = ExtResource("10_0oknv")
 
 [connection signal="mouse_entered" from="Arm/Area2D" to="." method="_on_arm_mouse_entered"]
 [connection signal="mouse_exited" from="Arm/Area2D" to="." method="_on_arm_mouse_exited"]

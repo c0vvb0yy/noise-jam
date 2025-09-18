@@ -3,18 +3,14 @@ extends Node2D
 @onready
 var label := $RichTextLabel
 
-func _physics_process(delta):
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		print("mouse clicked")
-
 func entered(body_part : Sprite2D, part_name: String):
 	label.text = part_name
-	body_part.modulate = Color.RED
+	#body_part.modulate = Color.RED
 	pass
 
 func exited(body_part: Sprite2D):
 	label.text = ""
-	body_part.modulate = Color.WHITE
+	#body_part.modulate = Color.WHITE
 	pass
 
 func _on_arm_mouse_entered():
