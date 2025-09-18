@@ -1,6 +1,6 @@
 {
 	"editor": {
-		"current_page_number": 0,
+		"current_page_number": 2,
 		"page_view": 0,
 		"text_size_id": 2
 	},
@@ -356,6 +356,12 @@
 			"toggle_ui_visible": {
 
 			},
+			"transition_to_autism": {
+				"next_line_index": 0
+			},
+			"transition_to_net": {
+
+			},
 			"update_body_label": {
 
 			},
@@ -370,7 +376,7 @@
 			}
 		},
 		"head_defaults": [],
-		"id_counter": -9223372036854761192,
+		"id_counter": -9223372036854757439,
 		"import_modified_times_by_path": {
 			"D:/100_godot/dialog-editor/export3.txt": 1755780507.0,
 			"D:/100_godot/dialog-editor/export6.txt": 1755861153.0
@@ -546,9 +552,9 @@
 							"delay_before": 0.0,
 							"meta.has_reverse": false,
 							"meta.reverse_text": "",
-							"meta.text": "transition_to_NET(0, glitch)",
-							"meta.validation_status": "Function transition_to_NET does not exist",
-							"name": "transition_to_NET",
+							"meta.text": "transition_to_net(0, default, Obliterate, glitch, 3, 0)",
+							"meta.validation_status": "OK",
+							"name": "transition_to_net",
 							"reverse_name": ""
 						},
 						"facts": {
@@ -1421,9 +1427,9 @@
 							"delay_before": 0.0,
 							"meta.has_reverse": false,
 							"meta.reverse_text": "",
-							"meta.text": "transition_to_NET(1, melt)",
-							"meta.validation_status": "Function transition_to_NET does not exist",
-							"name": "transition_to_NET",
+							"meta.text": "transition_to_net(1, default, melt, glitch, 3, 4)",
+							"meta.validation_status": "OK",
+							"name": "transition_to_net",
 							"reverse_name": ""
 						},
 						"facts": {
@@ -1749,9 +1755,9 @@
 							"delay_before": 0.0,
 							"meta.has_reverse": false,
 							"meta.reverse_text": "",
-							"meta.text": "transition_to_Autism(0, melt, 2, 0)",
-							"meta.validation_status": "Function transition_to_Autism does not exist",
-							"name": "transition_to_Autism",
+							"meta.text": "transition_to_autism(0, kaleidoscope, melt, glitch, 2, 0)",
+							"meta.validation_status": "OK",
+							"name": "transition_to_autism",
 							"reverse_name": ""
 						},
 						"facts": {

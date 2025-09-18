@@ -11,9 +11,7 @@ var sprite = $AnimatedSprite2D
 
 var in_dialoge := false
 
-func _physics_process(delta):
-	if PlayerManager.in_dialog:
-		print("you're in dialog")
+func _physics_process(_delta):
 	if !PlayerManager.in_dialog and (!sprite_pos_tween or !sprite_pos_tween.is_running()):
 		if Input.is_action_pressed("ui_up") and !$up.is_colliding():
 			move(Vector2.UP)

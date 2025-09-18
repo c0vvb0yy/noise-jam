@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnhhf8sprwkx1"]
+
+[ext_resource type="PackedScene" uid="uid://bjh6woasyrngu" path="res://mirror_base.tscn" id="1_1efam"]
+
+[node name="Interactable" instance=ExtResource("1_1efam")]
+
+[node name="Sprite2D" parent="." index="1"]
+z_index = 3
+
+[node name="ColorRect" parent="Sprite2D" index="0"]
+z_index = 0

@@ -13,7 +13,11 @@ func _ready():
 func activate():
 	visible = true
 	$CollisionShape2D.disabled = false
+	for child in get_children():
+		child.visible = true
 
 func deactivate():
 	visible = false
 	$CollisionShape2D.disabled = true
+	for child in get_children():
+		child.visible = false

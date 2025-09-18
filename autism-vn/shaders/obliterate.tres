@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://bih1jft88smdg"]
+
+[ext_resource type="Shader" uid="uid://b3cbb3uvabgya" path="res://shaders/obliterate.gdshader" id="1_q40mg"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_i8n8w"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bf7rr"]
+noise = SubResource("FastNoiseLite_i8n8w")
+
+[resource]
+shader = ExtResource("1_q40mg")
+shader_parameter/_randSeed = 0.0
+shader_parameter/strength = 1.0
+shader_parameter/block_size = Vector2(8, 64)
+shader_parameter/resolution = Vector2(1152, 648)
+shader_parameter/noise_map = SubResource("NoiseTexture2D_bf7rr")

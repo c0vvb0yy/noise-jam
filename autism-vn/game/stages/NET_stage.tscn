@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b2sbtmixmllw8"]
+[gd_scene load_steps=21 format=3 uid="uid://b2sbtmixmllw8"]
 
 [ext_resource type="Script" uid="uid://j84s4qlkmfxw" path="res://game/stages/game_stage.gd" id="1_yc22m"]
 [ext_resource type="Script" uid="uid://bqw08o3b22fdc" path="res://game/stages/line_reader_custom.gd" id="2_80gh7"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://chfbyvpvah4eu" path="res://game/characters/character.tscn" id="5_67nsm"]
 [ext_resource type="Script" uid="uid://c2vvnjn4tl6a7" path="res://game/stages/game_camera.gd" id="6_025ty"]
 [ext_resource type="PackedScene" uid="uid://4dxyqkl6drse" path="res://player.tscn" id="6_80gh7"]
+[ext_resource type="PackedScene" uid="uid://dnhhf8sprwkx1" path="res://mirror_0.tscn" id="6_gv2bm"]
 [ext_resource type="Theme" uid="uid://drk5fhsdjoewf" path="res://game/visuals/theme/diisis_theme.tres" id="7_gv2bm"]
 [ext_resource type="PackedScene" uid="uid://b2sxu2mk8iwt7" path="res://interactable_dummy2.tscn" id="7_s32xn"]
 [ext_resource type="PackedScene" uid="uid://cjy7vf1xrnq5y" path="res://game/screens/chapter_cover.tscn" id="8_3s73p"]
@@ -75,7 +76,6 @@ unique_name_in_owner = true
 
 [node name="Sprite2D" type="Sprite2D" parent="LineReader/Background"]
 visible = false
-position = Vector2(493, 334)
 
 [node name="Objects" type="Node2D" parent="LineReader"]
 unique_name_in_owner = true
@@ -85,8 +85,12 @@ script = ExtResource("4_s32xn")
 
 [node name="Interactable" parent="LineReader/Objects/0" instance=ExtResource("14_nc1js")]
 visible = false
-position = Vector2(779, 132)
+position = Vector2(494, 278)
 page_index = 3
+
+[node name="Mirror0" parent="LineReader/Objects/0" instance=ExtResource("6_gv2bm")]
+visible = false
+position = Vector2(792, 737)
 
 [node name="1" type="Node2D" parent="LineReader/Objects"]
 
@@ -105,13 +109,16 @@ character_name = "amber"
 
 [node name="Player" parent="LineReader" instance=ExtResource("6_80gh7")]
 visible = false
-position = Vector2(556, 306)
+position = Vector2(789, 91)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="LineReader"]
+layer = 99
 
 [node name="AnimationPlayer" parent="LineReader" instance=ExtResource("9_67nsm")]
 
 [node name="Camera2D" type="Camera2D" parent="LineReader"]
 unique_name_in_owner = true
-position = Vector2(576, 324)
+position = Vector2(800, 450)
 script = ExtResource("6_025ty")
 
 [node name="VFX" type="CanvasLayer" parent="LineReader/Camera2D"]
@@ -119,6 +126,7 @@ script = ExtResource("6_025ty")
 [node name="VFXLayer" type="Node2D" parent="LineReader/Camera2D/VFX"]
 
 [node name="VNUICanvasLayer" type="CanvasLayer" parent="LineReader/Camera2D"]
+layer = 10
 
 [node name="VNUIRoot" type="Control" parent="LineReader/Camera2D/VNUICanvasLayer"]
 layout_mode = 3

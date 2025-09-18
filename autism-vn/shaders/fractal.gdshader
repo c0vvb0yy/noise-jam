@@ -16,7 +16,7 @@ float burning_ship(vec2 uv){
 	vec2 z = vec2(0.0);
 	vec2 c = uv * zoom + center;
 	float iterations = 0.0;
-	
+
 	for(int i = 0; i < max_iterations; i++){
 		z = vec2(z.x * z.x - z.y * z.y, debug * z.x * z.y) + c;
 		//z = mat2(z, vec2(z.x,-z.y)) * z;

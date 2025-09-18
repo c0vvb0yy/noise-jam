@@ -17,7 +17,6 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-SceneTransition="*res://scene_transition.tscn"
 DIISIS="*res://addons/diisis/shared/autoload/Diisis.tscn"
 Pages="*res://addons/diisis/editor/autoload/pages.tscn"
 DiisisEditorUtil="*res://addons/diisis/editor/autoload/diisis_editor_util.tscn"
@@ -33,6 +32,7 @@ Sound="*res://game/autoloads/sound.tscn"
 Style="*res://game/autoloads/style.tscn"
 PlayerManager="*res://PlayerManager.gd"
 InputManager="*res://InputManager.gd"
+SceneTransition="*res://scene_transition.tscn"
 
 [diisis]
 
@@ -41,6 +41,8 @@ plugin/updates/check_for_updates=true
 
 [display]
 
+window/size/viewport_width=1600
+window/size/viewport_height=900
 window/stretch/mode="canvas_items"
 
 [editor]

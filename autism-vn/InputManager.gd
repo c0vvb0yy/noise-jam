@@ -9,7 +9,7 @@ var input_schemes :={
 var vn := {
 	'advance': [KEY_SPACE, KEY_ENTER, MOUSE_BUTTON_LEFT],
 	'interact': [],
-	'toggle_auto_continue': [KEY_A],
+	'toggle_auto_continue': [],
 	'ui_up': [],
 	'ui_left': [KEY_J],
 	'ui_down': [KEY_K],

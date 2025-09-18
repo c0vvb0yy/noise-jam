@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c8pkwulr5ltqo"]
+[gd_scene load_steps=23 format=3 uid="uid://c8pkwulr5ltqo"]
 
 [ext_resource type="Script" uid="uid://buikowlvi8m5q" path="res://debug.gd" id="1_23npu"]
 [ext_resource type="Material" uid="uid://3gf0slafvwld" path="res://kaleidoscope_fractal.tres" id="2_a6dsa"]
@@ -10,6 +10,8 @@
 [ext_resource type="Shader" uid="uid://choif84b5rqgs" path="res://shaders/bit_punk_pp.gdshader" id="7_bf7rr"]
 [ext_resource type="Texture2D" uid="uid://bycn0cnx2b68k" path="res://debug_tesxtures/chaos_noise_vertical_border.png" id="8_jt7e4"]
 [ext_resource type="Shader" uid="uid://dy11ygl5mfmr8" path="res://shaders/jpeg.gdshader" id="10_7bgeh"]
+[ext_resource type="Shader" uid="uid://cixj3otwfvmls" path="res://shaders/harsh_noise.gdshader" id="11_jt7e4"]
+[ext_resource type="Material" uid="uid://bih1jft88smdg" path="res://shaders/obliterate.tres" id="12_i8n8w"]
 
 [sub_resource type="Animation" id="Animation_pk40j"]
 length = 0.001
@@ -94,6 +96,13 @@ shader_parameter/dither_threshold = 0.7
 shader_parameter/dither_color = Color(0.816915, 0.618418, 0.532524, 1)
 shader_parameter/dither_texture = SubResource("NoiseTexture2D_duyeo")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bf7rr"]
+shader = ExtResource("11_jt7e4")
+shader_parameter/_randSeed = 2.345
+shader_parameter/steps = 0.4732
+shader_parameter/grid_size = 5.1
+shader_parameter/debug = 2.2
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jt7e4"]
 shader = ExtResource("10_7bgeh")
 shader_parameter/washout_intensity = 0.406
@@ -109,27 +118,27 @@ shader = NodePath("kaleidoscope")
 
 [node name="kaleidoscope" type="ColorRect" parent="."]
 material = ExtResource("2_a6dsa")
-offset_right = 1151.0
-offset_bottom = 647.0
+offset_right = 1600.0
+offset_bottom = 900.0
 script = ExtResource("3_w2p3h")
 
 [node name="fractal" type="ColorRect" parent="."]
 material = ExtResource("4_w2p3h")
-offset_left = 1150.0
-offset_top = 2.0
-offset_right = 2300.0
-offset_bottom = 645.0
+offset_left = 1800.0
+offset_top = 21.0
+offset_right = 2950.0
+offset_bottom = 664.0
 script = ExtResource("3_w2p3h")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
-root_node = NodePath("../Glitch")
+root_node = NodePath("../glitch")
 libraries = {
 &"": SubResource("AnimationLibrary_6xqm2")
 }
 
-[node name="Glitch" type="ColorRect" parent="CanvasLayer"]
+[node name="glitch" type="ColorRect" parent="CanvasLayer"]
 visible = false
 material = SubResource("ShaderMaterial_soqm1")
 anchors_preset = 15
@@ -143,34 +152,56 @@ material = SubResource("ShaderMaterial_i8n8w")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 6.0
-offset_top = 675.0
-offset_right = 6.0
-offset_bottom = 675.0
+offset_left = -3.0
+offset_top = 967.0
+offset_right = -3.0
+offset_bottom = 967.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-visible = false
 material = SubResource("ShaderMaterial_nnwbn")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 464.0
-offset_top = 678.0
-offset_right = 464.0
-offset_bottom = 678.0
+offset_left = 1601.0
+offset_top = 659.0
+offset_right = 1601.0
+offset_bottom = 659.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect4" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_bf7rr")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1329.0
+offset_bottom = 1329.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ColorRect3" type="ColorRect" parent="CanvasLayer"]
+visible = false
 material = SubResource("ShaderMaterial_jt7e4")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1179.0
-offset_top = 662.0
-offset_right = 1179.0
-offset_bottom = 662.0
+offset_left = 899.0
+offset_top = 6.0
+offset_right = -14.0
+offset_bottom = -451.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect5" type="ColorRect" parent="CanvasLayer"]
+material = ExtResource("12_i8n8w")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1776.0
+offset_top = 1140.0
+offset_right = 1776.0
+offset_bottom = 1140.0
 grow_horizontal = 2
 grow_vertical = 2

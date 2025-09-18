@@ -20,9 +20,9 @@ func _ready():
 	get_tree().get_root().connect("go_back_requested", set_screen.bind(CONST.SCREEN_OPTIONS))
 
 func set_screen(screen_path:String, payload := {}):
-	if is_instance_valid(Parser.line_reader):
-		if Parser.line_reader.is_executing:
-			return
+	#if is_instance_valid(Parser.line_reader):
+	#	if Parser.line_reader.is_executing:
+	#		return
 	
 	if screen.is_empty():
 		pause_state_before_open = Parser.paused

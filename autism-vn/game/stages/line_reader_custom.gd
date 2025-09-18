@@ -166,7 +166,7 @@ func use_ui(id: float) -> bool:
 
 func end_interaction():
 	PlayerManager.exit_dialog()
-	Parser.set_paused(true)
+	#Parser.set_paused(true)
 	toggle_ui_visible(false)
 	return true
 
@@ -174,35 +174,38 @@ func toggle_ui_visible(visible: bool):
 	if (ui_is_visible and visible) or (!ui_is_visible and !visible):
 		return
 	if visible:
-		Parser.set_paused(true)
+		#Parser.set_paused(true)
 		$AnimationPlayer.play_backwards("toggle_text_box")
-		Parser.set_paused(false)
+		#Parser.set_paused(false)
 		ui_is_visible = true
 	else:
 		$AnimationPlayer.play("toggle_text_box")
 		ui_is_visible = false
 	#$Camera2D/VNUICanvasLayer/VNUIRoot/VNUI/DefaultTextContainer.visible = !$Camera2D/VNUICanvasLayer/VNUIRoot/VNUI/DefaultTextContainer.visible
 
-func transition_to_NET(scene_key: int, transition_animation: String):
+func transition_to_net(scene_key: int, new_background: String, transition_animation: String, fade_out_animation: String, next_page_index: int, next_line_index: int):
 	#set_background("default")
 	PlayerManager.exit_dialog()
-	SceneTransition.start_change_scene()
-	set_background("default")
-	for object in $Objects.get_child(scene_key).get_children():
-		object.activate()
-	$Player.visible = true
-	SceneTransition.finish_change_scene(transition_animation)
+	SceneTransition.start_change_scene(transition_animation, true, scene_key, fade_out_animation, next_page_index, next_line_index, "room")
+	#set_background("default")
+	#for object in $Objects.get_child(scene_key).get_children():
+	#	object.activate()
+	#$Player.visible = true
+	#SceneTransition.finish_change_scene(transition_animation)
 	toggle_ui_visible(false)
 	InputManager.change_controls(1)
 	#Parser.read_page(2,0)
-	pass
+	return true
 
-func transition_to_Autism(prev_net_scene_key: int, transition_animation: String, page_index: int, line_index: int = 0):
-	SceneTransition.start_change_scene()
-	set_background("kaleidoscope")
-	for object in $Objects.get_child(prev_net_scene_key).get_children():
-		object.deactivate()
-	$Player.visible = false
-	SceneTransition.finish_change_scene(transition_animation)
-	Parser.read_page(page_index, line_index)
+func transition_to_autism(prev_net_scene_key: int, new_background: String, transition_animation: String, fade_out_animation: String, next_page_index: int, next_line_index: int = 0):
+	SceneTransition.start_change_scene(transition_animation, false, prev_net_scene_key, fade_out_animation, next_page_index, next_line_index, new_background)
+	InputManager.change_controls(0)
+	toggle_ui_visible(true)
+	return true
+	#set_background("kaleidoscope")
+	#for object in $Objects.get_child(prev_net_scene_key).get_children():
+	#	object.deactivate()
+	#$Player.visible = false
+	#SceneTransition.finish_change_scene(transition_animation)
+	#Parser.read_page(page_index, line_index)
 	

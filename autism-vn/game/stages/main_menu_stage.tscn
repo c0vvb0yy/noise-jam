@@ -16,6 +16,7 @@ menu_music = "main_menu"
 
 [node name="Background" type="Sprite2D" parent="."]
 unique_name_in_owner = true
+scale = Vector2(1.38628, 1.39352)
 texture = ExtResource("4_o4dm7")
 centered = false
 
@@ -26,6 +27,7 @@ offset_left = 16.0
 offset_top = 248.0
 offset_right = 687.0
 offset_bottom = 476.0
+scale = Vector2(1.76, 1.76)
 theme = ExtResource("3_fjoxk")
 theme_override_constants/margin_left = 7
 

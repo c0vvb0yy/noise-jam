@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://bjh6woasyrngu"]
+
+[ext_resource type="PackedScene" uid="uid://mlv7ee5ag08n" path="res://interactable.tscn" id="1_btww0"]
+[ext_resource type="Texture2D" uid="uid://ew4rlxgn00i7" path="res://mirror_textures/mirror.png" id="2_sjivb"]
+[ext_resource type="Shader" uid="uid://dmgjim3hm5fm6" path="res://mirror_base.gdshader" id="3_vddkq"]
+[ext_resource type="Script" uid="uid://bkqiiljdkg40p" path="res://shaders/mirror_base.gd" id="4_2cw44"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ch36p"]
+shader = ExtResource("3_vddkq")
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/shine_progress = 2.5
+shader_parameter/shine_size = 0.65
+shader_parameter/shine_angle = 149.4
+shader_parameter/grid_size = Vector2(2, 4)
+shader_parameter/shine_numbers = 2
+
+[node name="Interactable" instance=ExtResource("1_btww0")]
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(-0.5, 82.5)
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_sjivb")
+
+[node name="ColorRect" type="ColorRect" parent="Sprite2D" index="0"]
+z_index = -1
+material = SubResource("ShaderMaterial_ch36p")
+offset_left = -63.0
+offset_top = -107.0
+offset_right = 64.0
+offset_bottom = 137.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("4_2cw44")
