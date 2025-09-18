@@ -18,7 +18,8 @@ signal start_hide_cg(fade_out:float)
 signal start_chapter_cover(pov_name:String, bottom_text, new_background, zoom, bgm)
 signal request_object_visible(object_name:String, visibility:bool)
 
-
+signal change_to_net
+signal change_to_autism
 
 var camera : Camera2D
 
@@ -185,6 +186,7 @@ func toggle_ui_visible(visible: bool):
 
 func transition_to_net(scene_key: int, new_background: String, transition_animation: String, fade_out_animation: String, next_page_index: int, next_line_index: int):
 	#set_background("default")
+	emit_signal("change_to_net")
 	PlayerManager.exit_dialog()
 	SceneTransition.start_change_scene(transition_animation, true, scene_key, fade_out_animation, next_page_index, next_line_index, "room")
 	#set_background("default")
@@ -198,6 +200,7 @@ func transition_to_net(scene_key: int, new_background: String, transition_animat
 	return true
 
 func transition_to_autism(prev_net_scene_key: int, new_background: String, transition_animation: String, fade_out_animation: String, next_page_index: int, next_line_index: int = 0):
+	emit_signal("change_to_autism")
 	SceneTransition.start_change_scene(transition_animation, false, prev_net_scene_key, fade_out_animation, next_page_index, next_line_index, new_background)
 	InputManager.change_controls(0)
 	toggle_ui_visible(true)

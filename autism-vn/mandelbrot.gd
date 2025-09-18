@@ -1,5 +1,5 @@
 extends ColorRect
-
+class_name Kaleidoscope
 @export
 var enable := true
 
@@ -10,19 +10,26 @@ var zoom_in = true
 
 var count_time := true
 var shader_time := 0.0
+
+func _ready():
+	var lineReader = $"../../.."
+	lineReader.connect("change_to_net", stop_time)
+
 #func _input(event):
 	#if(event.is_action("ui_accept")):
 		#count_time = false
 		##SceneTransition.change_scene(target_scene)
 
+func stop_time():
+	count_time = false
+
 func set_shader_time(new_shader_time: float):
-	print(new_shader_time)
 	self.material.set_shader_parameter("shader_time", new_shader_time)
 	
 func _process(delta):
 	if count_time:
 		shader_time += delta
-	set_shader_time(shader_time)
+		set_shader_time(shader_time)
 	if(!enable):
 		return
 	
