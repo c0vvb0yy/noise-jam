@@ -478,3 +478,13 @@ func _on_body_label_meta_hover_ended(_meta: Variant) -> void:
 
 func _on_body_label_meta_clicked(meta: Variant) -> void:
 	OS.shell_open(str(meta))
+
+
+func _on_line_reader_start_show_cg(cg_name, fade_in, on_top):
+	if on_top:
+		emit_insutrction_complete_on_cg_hide = true
+		set_cg_top(cg_name, fade_in)
+	else:
+		#var t = get_tree().create_timer(fade_in)
+		#t.timeout.connect(Parser.function_acceded)
+		set_cg_bottom(cg_name, fade_in)

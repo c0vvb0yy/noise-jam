@@ -67,7 +67,7 @@ void fragment() {
 
 	if(enable_kaleidoscope){
 		uv.x *= resolution.x / resolution.y;
-		float angle = shader_time * speed;
+		float angle = speed * shader_time;
 		uv = rotate(angle) * fold(uv);
 	}
 

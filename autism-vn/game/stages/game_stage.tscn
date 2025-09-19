@@ -326,6 +326,7 @@ grow_vertical = 2
 
 [node name="AnimationPlayer" parent="LineReader" instance=ExtResource("13_aqeli")]
 
+[connection signal="start_show_cg" from="LineReader" to="." method="_on_line_reader_start_show_cg"]
 [connection signal="pressed" from="LineReader/Camera2D/VNUICanvasLayer/VNUIRoot/VNUI/AndroidHackButton" to="." method="_on_android_hack_button_pressed"]
 [connection signal="meta_clicked" from="LineReader/Camera2D/VNUICanvasLayer/VNUIRoot/VNUI/DefaultTextContainer/HBoxContainer/PanelContainer/VBoxContainer/BodyLabel" to="." method="_on_body_label_meta_clicked"]
 [connection signal="meta_hover_ended" from="LineReader/Camera2D/VNUICanvasLayer/VNUIRoot/VNUI/DefaultTextContainer/HBoxContainer/PanelContainer/VBoxContainer/BodyLabel" to="." method="_on_body_label_meta_hover_ended"]

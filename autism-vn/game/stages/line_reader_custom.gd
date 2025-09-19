@@ -21,6 +21,10 @@ signal request_object_visible(object_name:String, visibility:bool)
 signal change_to_net
 signal change_to_autism
 
+
+enum state {Eye, Arm, Jaw, Hole}
+signal change_to_mirror(new_state:state)
+
 var camera : Camera2D
 
 var ui_is_visible := true
@@ -184,11 +188,11 @@ func toggle_ui_visible(visible: bool):
 		ui_is_visible = false
 	#$Camera2D/VNUICanvasLayer/VNUIRoot/VNUI/DefaultTextContainer.visible = !$Camera2D/VNUICanvasLayer/VNUIRoot/VNUI/DefaultTextContainer.visible
 
-func transition_to_net(scene_key: int, new_background: String, transition_animation: String, fade_out_animation: String, next_page_index: int, next_line_index: int):
+func transition_to_net(scene_key: int, _new_background: String, transition_animation: String, fade_out_animation: String, next_page_index: int, next_line_index: int):
 	#set_background("default")
-	emit_signal("change_to_net")
 	PlayerManager.exit_dialog()
 	SceneTransition.start_change_scene(transition_animation, true, scene_key, fade_out_animation, next_page_index, next_line_index, "room")
+	emit_signal("change_to_net")
 	#set_background("default")
 	#for object in $Objects.get_child(scene_key).get_children():
 	#	object.activate()
@@ -197,6 +201,14 @@ func transition_to_net(scene_key: int, new_background: String, transition_animat
 	toggle_ui_visible(false)
 	InputManager.change_controls(1)
 	#Parser.read_page(2,0)
+	return true
+
+func transition_to_mirror(transition_animation: String, fade_out_animation: String, prev_scene_key: int, next_page_index: int, next_line_index: int, mirror_state: state):
+	SceneTransition.start_change_scene(transition_animation, false, prev_scene_key, fade_out_animation, next_page_index, next_line_index, "Mirror", true, mirror_state)
+	toggle_ui_visible(false)
+	PlayerManager.exit_dialog()
+	InputManager.change_controls(0)
+	
 	return true
 
 func transition_to_autism(prev_net_scene_key: int, new_background: String, transition_animation: String, fade_out_animation: String, next_page_index: int, next_line_index: int = 0):

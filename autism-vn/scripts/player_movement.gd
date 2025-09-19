@@ -13,6 +13,8 @@ var in_dialoge := false
 
 var origin_pos: Vector2
 
+var moves_slow := false
+
 func _ready():
 	origin_pos = self.position
 
@@ -23,14 +25,24 @@ func set_up(activate):
 
 func _physics_process(_delta):
 	if !PlayerManager.in_dialog and (!sprite_pos_tween or !sprite_pos_tween.is_running()):
-		if Input.is_action_just_pressed("ui_up") and !$up.is_colliding():
-			move(Vector2.UP)
-		elif Input.is_action_just_pressed("ui_down") and !$down.is_colliding():
-			move(Vector2.DOWN)
-		elif Input.is_action_just_pressed("ui_left") and !$left.is_colliding():
-			move(Vector2.LEFT)
-		elif Input.is_action_just_pressed("ui_right") and !$right.is_colliding():
-			move(Vector2.RIGHT)
+		if(!moves_slow):
+			if Input.is_action_pressed("ui_up") and !$up.is_colliding():
+				move(Vector2.UP)
+			elif Input.is_action_pressed("ui_down") and !$down.is_colliding():
+				move(Vector2.DOWN)
+			elif Input.is_action_pressed("ui_left") and !$left.is_colliding():
+				move(Vector2.LEFT)
+			elif Input.is_action_pressed("ui_right") and !$right.is_colliding():
+				move(Vector2.RIGHT)
+		else:
+			if Input.is_action_just_pressed("ui_up") and !$up.is_colliding():
+				move(Vector2.UP)
+			elif Input.is_action_just_pressed("ui_down") and !$down.is_colliding():
+				move(Vector2.DOWN)
+			elif Input.is_action_just_pressed("ui_left") and !$left.is_colliding():
+				move(Vector2.LEFT)
+			elif Input.is_action_just_pressed("ui_right") and !$right.is_colliding():
+				move(Vector2.RIGHT)
 	if Input.is_action_just_pressed("interact") and ($up.is_colliding() or $down.is_colliding() or $left.is_colliding() or $right.is_colliding()):
 		interact()
 

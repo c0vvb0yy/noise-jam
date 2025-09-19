@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c8pkwulr5ltqo"]
+[gd_scene load_steps=24 format=3 uid="uid://c8pkwulr5ltqo"]
 
 [ext_resource type="Script" uid="uid://buikowlvi8m5q" path="res://debug.gd" id="1_23npu"]
 [ext_resource type="Material" uid="uid://3gf0slafvwld" path="res://kaleidoscope_fractal.tres" id="2_a6dsa"]
@@ -12,6 +12,8 @@
 [ext_resource type="Shader" uid="uid://dy11ygl5mfmr8" path="res://shaders/jpeg.gdshader" id="10_7bgeh"]
 [ext_resource type="Shader" uid="uid://cixj3otwfvmls" path="res://shaders/harsh_noise.gdshader" id="11_jt7e4"]
 [ext_resource type="Material" uid="uid://bih1jft88smdg" path="res://shaders/obliterate.tres" id="12_i8n8w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o3sac"]
 
 [sub_resource type="Animation" id="Animation_pk40j"]
 length = 0.001
@@ -64,6 +66,21 @@ shader_parameter/noise_strength = 1.0
 shader_parameter/desaturation_power = 1.46
 shader_parameter/noise = ExtResource("8_jt7e4")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bf7rr"]
+shader = ExtResource("11_jt7e4")
+shader_parameter/_randSeed = 2.345
+shader_parameter/steps = 0.4732
+shader_parameter/grid_size = 5.1
+shader_parameter/debug = 2.2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jt7e4"]
+shader = ExtResource("10_7bgeh")
+shader_parameter/washout_intensity = 0.406
+shader_parameter/blur_amount = 5.0
+shader_parameter/blockiness = 150.0
+shader_parameter/color_steps = 12.282
+shader_parameter/grain_amount = 0.046
+
 [sub_resource type="Gradient" id="Gradient_twvc8"]
 colors = PackedColorArray(0.89991, 0.704944, 0.709582, 1, 0.838468, 0.328668, 0.834807, 1)
 
@@ -92,24 +109,9 @@ shader_parameter/_min_value = 0.72
 shader_parameter/_max_value = 0.99
 shader_parameter/_sec_min_value = 0.06
 shader_parameter/_sec_max_value = 0.1
-shader_parameter/dither_threshold = 0.7
+shader_parameter/dither_threshold = 0.85
 shader_parameter/dither_color = Color(0.816915, 0.618418, 0.532524, 1)
 shader_parameter/dither_texture = SubResource("NoiseTexture2D_duyeo")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bf7rr"]
-shader = ExtResource("11_jt7e4")
-shader_parameter/_randSeed = 2.345
-shader_parameter/steps = 0.4732
-shader_parameter/grid_size = 5.1
-shader_parameter/debug = 2.2
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jt7e4"]
-shader = ExtResource("10_7bgeh")
-shader_parameter/washout_intensity = 0.406
-shader_parameter/blur_amount = 5.0
-shader_parameter/blockiness = 150.0
-shader_parameter/color_steps = 12.282
-shader_parameter/grain_amount = 0.046
 
 [node name="Control" type="Node2D" node_paths=PackedStringArray("shader")]
 script = ExtResource("1_23npu")
@@ -130,6 +132,13 @@ offset_right = 2950.0
 offset_bottom = 664.0
 script = ExtResource("3_w2p3h")
 
+[node name="burst" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_o3sac")
+offset_left = 3454.0
+offset_top = 302.0
+offset_right = 5074.0
+offset_bottom = 1238.0
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
@@ -139,11 +148,14 @@ libraries = {
 }
 
 [node name="glitch" type="ColorRect" parent="CanvasLayer"]
-visible = false
 material = SubResource("ShaderMaterial_soqm1")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 2039.0
+offset_top = 781.0
+offset_right = 2039.0
+offset_bottom = 781.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -152,22 +164,10 @@ material = SubResource("ShaderMaterial_i8n8w")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -3.0
-offset_top = 967.0
-offset_right = -3.0
-offset_bottom = 967.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-material = SubResource("ShaderMaterial_nnwbn")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1601.0
-offset_top = 659.0
-offset_right = 1601.0
-offset_bottom = 659.0
+offset_left = 5.0
+offset_top = 959.0
+offset_right = 9.0
+offset_bottom = 944.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -176,21 +176,22 @@ material = SubResource("ShaderMaterial_bf7rr")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 1329.0
-offset_bottom = 1329.0
+offset_left = 5.0
+offset_top = 1906.0
+offset_right = 5.0
+offset_bottom = 1906.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ColorRect3" type="ColorRect" parent="CanvasLayer"]
-visible = false
 material = SubResource("ShaderMaterial_jt7e4")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 899.0
-offset_top = 6.0
-offset_right = -14.0
-offset_bottom = -451.0
+offset_left = 1891.0
+offset_top = 2155.0
+offset_right = 1727.0
+offset_bottom = 2064.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -203,5 +204,17 @@ offset_left = 1776.0
 offset_top = 1140.0
 offset_right = 1776.0
 offset_bottom = 1140.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_nnwbn")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3637.0
+offset_top = 1376.0
+offset_right = 3637.0
+offset_bottom = 1376.0
 grow_horizontal = 2
 grow_vertical = 2

@@ -20,6 +20,7 @@ const BACKGROUND_DEFAULT := "void.png"
 const BACKGROUND_SKYLINE := "skyline.png"
 const BACKGROUND_KALEIDOSCOPE := "kaleidoscope.tscn"
 const BACKGROUND_ROOM := "vignette.tscn"
+const BACKGROUND_MIRROR := "Mirror.tscn"
 
 const MUSIC_ROOT := "res://game/sounds/music/"
 const MUSIC_DEFAULT := "Loyalty Freak Music - CHILL FOR REAL ! - 06 Vroom Vroom Heart Heart -blob_0w0-​.ogg"

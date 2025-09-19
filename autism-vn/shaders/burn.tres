@@ -11,3 +11,6 @@ shader_parameter/borderWidth = 0.18
 shader_parameter/burnMult = 0.59
 shader_parameter/noiseTexture = ExtResource("2_w22hg")
 shader_parameter/burnColor = Color(0.769816, 0.121537, 0.287455, 1)
+shader_parameter/outline_color = Color(0.868077, 0, 0.234624, 1)
+shader_parameter/progress = 1.0
+shader_parameter/width = 0.03

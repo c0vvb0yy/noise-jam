@@ -3,6 +3,8 @@ extends CanvasLayer
 @onready var anim : AnimationPlayer = $AnimationPlayer
 
 var changing_to_net = true
+var changing_to_mirror = false
+var mirror_state
 var scene_key : int
 var fade_out_animation : String
 var page_index: int
@@ -24,11 +26,13 @@ func only_show_animation_rect(animation: String):
 		else:
 			node.visible = false
 
-func start_change_scene(animation: String, chaging_to_NET: bool, next_scene_key: int, fade_out_anim: String, next_page: int, next_line: int, new_background: String):
+func start_change_scene(animation: String, to_NET: bool, next_scene_key: int, fade_out_anim: String, next_page: int, next_line: int, new_background: String, to_mirror: bool = false, new_mirror_state = null):
 	#$Glitch.visible = false
 	#$Melt.visible = true
 	only_show_animation_rect(animation)
-	changing_to_net = chaging_to_NET
+	changing_to_net = to_NET
+	changing_to_mirror = to_mirror
+	mirror_state = new_mirror_state
 	scene_key = next_scene_key
 	fade_out_animation = fade_out_anim
 	page_index = next_page
@@ -47,7 +51,8 @@ func on_anim_finished(_anim_name = null):
 			object.activate()
 		else: object.deactivate()
 	$/root/StageRoot/StageContainer/GameStage/LineReader/Player.set_up(changing_to_net)
-	
+	if(changing_to_mirror):
+		$/root/StageRoot/StageContainer/GameStage/LineReader/Background/Mirror.set_up(mirror_state)
 	finish_change_scene()
 
 func finish_change_scene(_anim_name = null):

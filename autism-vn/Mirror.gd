@@ -3,10 +3,35 @@ extends Node2D
 @onready
 var label := $RichTextLabel
 
+enum state {Eye, Arm, Jaw, Hole}
+var current_state: state = state.Eye
+
+
 func entered(body_part : Sprite2D, part_name: String):
-	label.text = part_name
+	label.text = str("[skew h=45000 v =1][i]",part_name)
 	#body_part.modulate = Color.RED
 	pass
+
+func set_up(new_state: state):
+	current_state = new_state
+	if current_state == state.Eye:
+		$eye.active = true
+		$Arm/Area2D/CollisionShape2D.disabled = true
+		$mouth/Area2D/CollisionShape2D.disabled = true
+		$hole/Area2D/CollisionShape2D.disabled = true
+	if current_state == state.Arm:
+		$Arm/Area2D/CollisionShape2D.disabled = false
+		$eye.visible = false
+		$Arm.active = true
+	if current_state == state.Jaw:
+		$mouth/Area2D/CollisionShape2D.disabled = false
+		$Arm.visible = false
+		$mouth.active = true
+	if current_state == state.Hole:
+		$hole/Area2D/CollisionShape2D.disabled = false
+		$mouth.visible = false
+		$hole.active = true
+		$Sun.visible = true
 
 func exited(body_part: Sprite2D):
 	label.text = ""
@@ -14,21 +39,29 @@ func exited(body_part: Sprite2D):
 	pass
 
 func _on_arm_mouse_entered():
+	if current_state != state.Arm:
+		return
 	entered($Arm, "An arm to hold")
 	pass # Replace with function body.
 
 
 func _on_eye_mouse_entered():
+	if current_state != state.Eye:
+		return
 	entered($eye, "Eye for an Eye")
 	pass # Replace with function body.
 
 
 func _on_mouth_mouse_entered():
+	if current_state != state.Jaw:
+		return
 	entered($mouth, "Mouth to kiss")
 	pass # Replace with function body.
 
 
 func _on_hole_mouse_entered():
+	if current_state != state.Hole:
+		return
 	entered($hole, "The hole-shaped Hole")
 	pass # Replace with function body.
 

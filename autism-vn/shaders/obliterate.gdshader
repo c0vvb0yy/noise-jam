@@ -17,7 +17,7 @@ void fragment() {
 	
 	float r1 = random_time_based(uv, TIME * 0.000006);
 	float r2 = random_time_based(uv.yx, TIME * 0.000006);
-	
+	vec2 centered_uv = UV * 2.0 - 1.0;
 	vec2 noise = texture(noise_map, uv + vec2(r1, r2)).rg;
-	COLOR = texture(screen_texture, SCREEN_UV - noise *  strength);
+	COLOR = texture(screen_texture, vec2(SCREEN_UV.y, SCREEN_UV.y - noise.y *  strength));
 }

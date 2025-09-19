@@ -8,13 +8,13 @@
 [ext_resource type="Script" uid="uid://c2vvnjn4tl6a7" path="res://game/stages/game_camera.gd" id="6_025ty"]
 [ext_resource type="PackedScene" uid="uid://4dxyqkl6drse" path="res://player.tscn" id="6_80gh7"]
 [ext_resource type="PackedScene" uid="uid://dnhhf8sprwkx1" path="res://mirror_0.tscn" id="6_gv2bm"]
-[ext_resource type="Theme" uid="uid://drk5fhsdjoewf" path="res://game/visuals/theme/diisis_theme.tres" id="7_gv2bm"]
 [ext_resource type="PackedScene" uid="uid://b2sxu2mk8iwt7" path="res://interactable_dummy2.tscn" id="7_s32xn"]
 [ext_resource type="PackedScene" uid="uid://cjy7vf1xrnq5y" path="res://game/screens/chapter_cover.tscn" id="8_3s73p"]
 [ext_resource type="PackedScene" uid="uid://biu88w163ploy" path="res://game/systems/cheats.tscn" id="9_6f3us"]
 [ext_resource type="PackedScene" uid="uid://c1v8ws6vvaywj" path="res://animation_player.tscn" id="9_67nsm"]
 [ext_resource type="Script" uid="uid://byyv78vc44g4u" path="res://game/stages/start_cover.gd" id="10_goxu8"]
 [ext_resource type="PackedScene" uid="uid://cg68f27bymn00" path="res://game/stages/rolling_credits.tscn" id="11_os2va"]
+[ext_resource type="Theme" uid="uid://qlauolmyd5g6" path="res://game/NET_theme.tres" id="12_025ty"]
 [ext_resource type="PackedScene" uid="uid://qkegdwc8ux5o" path="res://game/stages/black_fade.tscn" id="12_pcw8o"]
 [ext_resource type="PackedScene" uid="uid://gwe4ucabextx" path="res://interactable_dummy1.tscn" id="14_nc1js"]
 
@@ -91,6 +91,8 @@ page_index = 3
 [node name="Mirror0" parent="LineReader/Objects/0" instance=ExtResource("6_gv2bm")]
 visible = false
 position = Vector2(792, 737)
+page_index = 3
+line_index = 8
 
 [node name="1" type="Node2D" parent="LineReader/Objects"]
 
@@ -136,7 +138,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource("7_gv2bm")
+theme = ExtResource("12_025ty")
 
 [node name="Control" type="Control" parent="LineReader/Camera2D/VNUICanvasLayer/VNUIRoot"]
 layout_mode = 1
@@ -267,6 +269,7 @@ theme_type_variation = &"GameControlsButton"
 text = "Menu"
 
 [node name="ChoicePanel" type="PanelContainer" parent="LineReader/Camera2D/VNUICanvasLayer/VNUIRoot"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

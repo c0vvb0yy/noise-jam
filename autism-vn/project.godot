@@ -33,6 +33,7 @@ Style="*res://game/autoloads/style.tscn"
 PlayerManager="*res://PlayerManager.gd"
 InputManager="*res://InputManager.gd"
 SceneTransition="*res://scene_transition.tscn"
+SceneManager="*res://game/autoloads/scene_manager.gd"
 
 [diisis]
 
