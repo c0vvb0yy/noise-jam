@@ -200,10 +200,10 @@ material = ExtResource("12_i8n8w")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1776.0
-offset_top = 1140.0
-offset_right = 1776.0
-offset_bottom = 1140.0
+offset_left = -122.0
+offset_top = -130.0
+offset_right = -122.0
+offset_bottom = -130.0
 grow_horizontal = 2
 grow_vertical = 2
 

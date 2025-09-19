@@ -18,19 +18,22 @@ func set_up(new_state: state):
 		$eye.active = true
 		$Arm/Area2D/CollisionShape2D.disabled = true
 		$mouth/Area2D/CollisionShape2D.disabled = true
-		$hole/Area2D/CollisionShape2D.disabled = true
+		$hole.scale = Vector2(2, 2)
 	if current_state == state.Arm:
 		$Arm/Area2D/CollisionShape2D.disabled = false
 		$eye.visible = false
 		$Arm.active = true
+		$hole.scale = Vector2(6.4, 6.4)
 	if current_state == state.Jaw:
 		$mouth/Area2D/CollisionShape2D.disabled = false
 		$Arm.visible = false
 		$mouth.active = true
+		$hole.scale = Vector2(14.6, 14.6)
 	if current_state == state.Hole:
 		$hole/Area2D/CollisionShape2D.disabled = false
 		$mouth.visible = false
 		$hole.active = true
+		$hole.scale = Vector2(18, 18)
 		$Sun.visible = true
 
 func exited(body_part: Sprite2D):

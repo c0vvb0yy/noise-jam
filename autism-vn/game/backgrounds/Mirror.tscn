@@ -156,8 +156,8 @@ shape = SubResource("RectangleShape2D_ylwjw")
 
 [node name="hole" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_0uytd")
-position = Vector2(809, 546)
-scale = Vector2(10, 10)
+position = Vector2(807, 546)
+scale = Vector2(17.955, 17.955)
 texture = ExtResource("10_5i6fo")
 script = ExtResource("5_r0md3")
 body_text = "Is there anything left-"
